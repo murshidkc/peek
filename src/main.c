@@ -2,10 +2,6 @@
 #include "../headers/main_heads.h"
 
 int main(int argc, char *argv[]){
-    pthread_t my_threads[MAX_THREAD];// threads available
-    int i = 0;
-
-    pthread_mutex_init(&lock, NULL);
 
     if(argc < 3){
         printf("********program expects the format********\n"
@@ -13,8 +9,15 @@ int main(int argc, char *argv[]){
                 "%s <space> directory_add <space> key_word\n", argv[0]);
         return 0;
     }
+
+    int i = 0;
+    
+    pthread_t my_threads[MAX_THREAD];// threads available
+    pthread_mutex_init(&lock, NULL);// initializing the mutex lock
+    init_result(INITIAL_SIZE);
     
     DIR *dir = opendir(argv[1]);// opens the Directory from the directory path
+    
     if(dir == NULL){// if fails to open
         printf("Error Opening Directory\n");
         return EXIT_FAILURE;
@@ -61,7 +64,11 @@ int main(int argc, char *argv[]){
     closedir(dir);
     pthread_mutex_destroy(&lock);
 
-    printf("%s", result);
+    printf("%s", my_result.buff);
+    printf("Total Matches = %ld\n", my_result.count);
+
+    free(my_result.buff);
 
     return EXIT_SUCCESS;
 }
+
