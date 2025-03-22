@@ -1,5 +1,4 @@
 *.un~
 a.out
 test/
-
-
+cscope.out

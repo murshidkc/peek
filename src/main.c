@@ -6,7 +6,7 @@ int main(int argc, char *argv[]){
     if(argc < 3){
         printf("********program expects the format********\n"
                 "******************************************\n"
-                "%s <space> directory_add <space> key_word\n", argv[0]);
+                "%s dirAddress key_word\n", argv[0]);
         return 0;
     }
 
@@ -20,6 +20,9 @@ int main(int argc, char *argv[]){
     
     if(dir == NULL){// if fails to open
         printf("Error Opening Directory\n");
+        free(my_result.buff);
+        pthread_mutex_destroy(&lock);
+        closedir(dir);
         return EXIT_FAILURE;
     }
     struct dirent *entry;
@@ -49,6 +52,7 @@ int main(int argc, char *argv[]){
             closedir(dir);
             return EXIT_FAILURE;
         }
+        // pthread_join(my_threads[i], NULL);
         i++;
         // thread limit reached
         if(i > MAX_THREAD){
@@ -66,6 +70,8 @@ int main(int argc, char *argv[]){
 
     printf("%s", my_result.buff);
     printf("Total Matches = %ld\n", my_result.count);
+    printf("Result buffer size = %ld\n", my_result.size);
+    printf("Total storage used = %ld\n", my_result.capacity);
 
     free(my_result.buff);
 

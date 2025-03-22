@@ -48,6 +48,8 @@ void *search(void *param){
     
     if(!file){
         perror("Error opening file\n");
+        free(my_arg->filename);
+        free(my_arg);
         pthread_exit(NULL);
     }
 

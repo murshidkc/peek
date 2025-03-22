@@ -14,6 +14,7 @@
 #define MAX_THREAD 100
 #define MAX_LINE_LEN 1024
 #define INITIAL_SIZE 100
+#define MAX_THREADS 12
 
 // structure for result variable
 typedef struct result{
@@ -31,10 +32,19 @@ pthread_mutex_t lock;
 
 // argument structure of pthread function
 typedef struct arg{
-    char *filename;
-    char *keyword;
-    int word_size;// if needed
+    char* filename;
+    char* keyword;
+    // arg* next;
 }arg;
+
+/**
+// queue structure
+typedef struct {
+    arg* head;
+    arg* tail;
+    int size;
+}queue_struct;
+**/
 
 // function definition of basic pthread function
 void *search(void *);
