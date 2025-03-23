@@ -4,9 +4,8 @@
 int main(int argc, char *argv[]){
 
     if(argc < 3){
-        printf("********program expects the format********\n"
-                "******************************************\n"
-                "%s dirAddress key_word\n", argv[0]);
+        printf("Usage:\n\n"
+                "%s <directory_path> <search_word>\n", argv[0]);
         return 0;
     }
 
