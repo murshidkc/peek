@@ -27,7 +27,6 @@ void add_to_result(char filename[], int line_num){
         char *new_buff = realloc(my_result.buff, my_result.capacity);
         if(new_buff == NULL){
             printf("Memory allocation while adding a result failed\n");
-            free(my_result.buff);
             exit(EXIT_FAILURE);
         }
         my_result.buff = new_buff;

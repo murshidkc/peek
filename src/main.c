@@ -22,7 +22,6 @@ int main(int argc, char *argv[]){
         printf("Error Opening Directory\n");
         free(my_result.buff);
         pthread_mutex_destroy(&lock);
-        closedir(dir);
         return EXIT_FAILURE;
     }
     struct dirent *entry;
@@ -60,7 +59,7 @@ int main(int argc, char *argv[]){
             break;
         }
     }
-
+    int max_thread = i;
     for(int j = 0; j < i; j++){
         pthread_join(my_threads[j], NULL);
     }
@@ -72,6 +71,7 @@ int main(int argc, char *argv[]){
     printf("Total Matches = %ld\n", my_result.count);
     printf("Result buffer size = %ld\n", my_result.size);
     printf("Total storage used = %ld\n", my_result.capacity);
+    printf("max thread count = %d\n", max_thread);
 
     free(my_result.buff);
 
