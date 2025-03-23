@@ -70,7 +70,7 @@ int main(int argc, char *argv[]){
     printf("Total Matches = %ld\n", my_result.count);
     printf("Result buffer size = %ld\n", my_result.size);
     printf("Total storage used = %ld\n", my_result.capacity);
-    printf("max thread count = %d\n", max_thread);
+    printf("Total threads used = %d\n", max_thread);
 
     free(my_result.buff);
 
