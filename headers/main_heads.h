@@ -8,6 +8,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <math.h>
+#include <stdbool.h>
 
 #define MAX_KEY_SIZE 20
 #define MAX_FILE 100
@@ -48,5 +49,13 @@ typedef struct {
 
 // function definition of basic pthread function
 void *search(void *);
+
+// printing the usage
+void print_usage(char* exe) {
+    printf("Usage:\n\n%s <directory_path> <search_word>\n", exe);
+    printf("\nFlags:\n\n-a : Searches hidden files too\n"
+            "%s <directory_path> <search_word> -a\n", exe);
+    return;
+}
 
 #endif

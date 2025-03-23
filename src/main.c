@@ -2,11 +2,19 @@
 #include "../headers/main_heads.h"
 
 int main(int argc, char *argv[]){
-
+    bool flag_a = false;
     if(argc < 3){
-        printf("Usage:\n\n"
-                "%s <directory_path> <search_word>\n", argv[0]);
+        print_usage(argv[0]);
         return 0;
+    }
+
+    // flag setting to search for files starting with dot(.)
+    if(argc > 3) {
+        if(!strncmp(argv[3], "-a", 2)){
+            flag_a = true;
+        }else{
+            print_usage(argv[0]);
+        }
     }
 
     int i = 0;
@@ -26,7 +34,7 @@ int main(int argc, char *argv[]){
     struct dirent *entry;
     
     while((entry = readdir(dir)) != NULL){
-        if(entry->d_name[0] == '.'){
+        if(!flag_a && entry->d_name[0] == '.'){
             continue;
         }
         // if successfully added entry as a file
