@@ -3,6 +3,11 @@
 
 int main(int argc, char *argv[]){
     bool flag_a = false;
+    if(argc > 1 && ( (!strncmp(argv[1], "--version", 9) && argv[1][9] == '\0')  || (!strncmp(argv[1], "-v", 2) && argv[1][2] == '\0') ) ) {
+        printf("peek version 1.0.0\n");
+        return 0;
+    }
+
     if(argc < 3){
         print_usage(argv[0]);
         return 0;
@@ -10,10 +15,11 @@ int main(int argc, char *argv[]){
 
     // flag setting to search for files starting with dot(.)
     if(argc > 3) {
-        if(!strncmp(argv[3], "-a", 2)){
+        if(!strncmp(argv[3], "-a", 2) && argv[3][2] == '\0'){
             flag_a = true;
         }else{
             print_usage(argv[0]);
+            return 0;
         }
     }
 
