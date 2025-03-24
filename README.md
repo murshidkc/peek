@@ -32,8 +32,8 @@ Example:
 ./peek ./test out
 If want to search hidden files add -a flag
 ./peek ./test out -a
-If want to search long string including spaces and special characters wrap it like "out"
-./peek ./test "out"
+If want to search long string including spaces and special characters wrap it with ""
+./peek test/ "how could"
 ```
 
 ## Building
